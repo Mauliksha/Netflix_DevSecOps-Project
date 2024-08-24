@@ -62,7 +62,7 @@
     
     #to delete
     docker stop <containerid>
-    docker rmi -f netflix
+    docker rm netflix
     ```
 
 It will show an error cause you need API key
@@ -126,9 +126,9 @@ docker build --build-arg TMDB_V3_API_KEY=<your-api-key> -t netflix .
     sudo apt update
     sudo apt install fontconfig openjdk-17-jre
     java -version
-    openjdk version "17.0.8" 2023-07-18
-    OpenJDK Runtime Environment (build 17.0.8+7-Debian-1deb12u1)
-    OpenJDK 64-Bit Server VM (build 17.0.8+7-Debian-1deb12u1, mixed mode, sharing)
+    openjdk version "17.0.12" 2024-08-24
+    OpenJDK Runtime Environment (build 17.0.12+7-Debian-1deb12u1)
+    OpenJDK 64-Bit Server VM (build 17.0.12+7-Debian-1deb12u1, mixed mode, sharing)
     
     #jenkins
     sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
@@ -294,14 +294,14 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/N4si/DevSecOps-Project.git'
+                git branch: 'main', url: 'https://github.com/Mauliksha/Netflix_DevSecOps-Project.git'
             }
         }
         stage("Sonarqube Analysis "){
             steps{
                 withSonarQubeEnv('sonar-server') {
                     sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Netflix \
-                    -Dsonar.projectKey=Netflix '''
+                    -Dsonar.projectKey=Netflix-1 '''
                 }
             }
         }
